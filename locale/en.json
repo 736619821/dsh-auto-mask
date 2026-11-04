@@ -1,0 +1,29 @@
+{
+  "name": "dsh-auto-mask",
+  "description": "Enhanced PII masking plugin with email classification",
+  "entities": {
+    "phone": "Phone Number",
+    "email": "Email",
+    "email_personal": "Personal Email",
+    "email_enterprise": "Enterprise Email",
+    "id-card": "ID Card",
+    "bank-card": "Bank Card",
+    "key": "API Key / Secret",
+    "ip": "IP Address"
+  },
+  "placeholders": {
+    "email": "***@domain.com (domain preserved for context)"
+  },
+  "commands": {
+    "status": "Show masking statistics",
+    "on": "Enable masking",
+    "off": "Disable masking",
+    "restore": "Restore placeholders to original values"
+  },
+  "messages": {
+    "enabled": "Enhanced PII masking is enabled (email classification active)",
+    "disabled": "Enhanced PII masking is disabled",
+    "no_placeholders": "No placeholders found for this session",
+    "restored": "Restored {count} placeholder(s)"
+  }
+}

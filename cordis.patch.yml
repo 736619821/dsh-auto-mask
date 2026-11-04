@@ -1,0 +1,40 @@
+# dsh-auto-mask bundle patch: mount the auto-mask plugin.
+#
+# Enhanced PII masking with email classification (personal vs enterprise).
+# Emails are masked as ***@domain.com to preserve domain context.
+- insert:
+    - id: automask
+      name: dsh-auto-mask
+      config:
+        # Master switch.
+        enabled: true
+        # Detection mode: only 'regex' is implemented.
+        mode: regex
+        # Which entity types to mask. Email types distinguish personal vs enterprise:
+        # - email_personal: gmail.com, qq.com, 163.com, etc.
+        # - email_enterprise: corporate domains, known enterprise domains.
+        # Both are masked as ***@domain.com to preserve context.
+        entities:
+          - phone
+          - email
+          - email_personal
+          - email_enterprise
+          - id-card
+          - bank-card
+          - key
+        # Masking surface(s): 'messages' masks agent/pre-step messages.
+        scope:
+          - messages
+        # Register /mask command and mask_test tool.
+        registerCommand: true
+        registerTools: true
+        # Persist restore table to storage domain.
+        persistRestoreTable: true
+        # Per-session cap on restore entries.
+        maxRestoreEntriesPerSession: 500
+        # Cap on in-memory session strippers.
+        maxSessions: 1000
+        # Enable email classification (personal vs enterprise).
+        enableEmailClassification: true
+        # Restore plaintext delivery directory.
+        restoreDir: ''
